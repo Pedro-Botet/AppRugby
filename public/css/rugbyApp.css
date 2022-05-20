@@ -1,0 +1,519 @@
+p {
+    margin-bottom: 0;
+}
+
+a {
+    color: rgba(7, 113, 120, 1);
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgba(7, 113, 120, 0.5);
+}
+
+hr {
+    margin-top: 0rem;
+    margin-bottom: 0.5rem;
+}
+
+
+/* TOP NAV BAR */
+
+nav {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    color: #fff;
+    margin: 0 auto;
+}
+
+.navbar {
+    padding: 15px 80px;
+    min-height: 50px;
+}
+
+.navbar-brand {
+    display: inline-block;
+    float: left;
+    margin-right: 40px;
+    vertical-align: middle;
+}
+
+.navbar-brand img {
+    display: block;
+}
+
+.navbar-nav {
+    margin-top: 2px;
+    float: left;
+}
+
+.navbar-item {
+    font-size: 14px;
+    float: left;
+    padding: 11px 15px 9px 0;
+}
+
+.navbar-text {
+    font-size: 13px;
+    float: left;
+    padding: 11px 15px 9px 1em;
+}
+
+.navbar-text:hover {
+    text-decoration: none;
+    color: rgba(7, 113, 120, 1);
+}
+
+.dropdown-menu {
+    border-radius: .15rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: #fff !important;
+    text-transform: uppercase;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.nav-link:hover {
+    color: #ccc !important;
+}
+
+.bg-dark {
+    background: #252525 !important;
+}
+
+
+/* BASIC LAYOUT */
+
+.container {
+    margin-top: 7em;
+    margin-bottom: 1em;
+    /* padding: 0; */
+}
+
+.titulo {
+    margin-bottom: 1em;
+    color: #666;
+    padding-left: 1.25rem;
+}
+
+.form {
+    margin-bottom: 1em;
+    padding: .75rem 1rem;
+}
+
+.bottom-buttons {
+    /* margin-top: 2em */
+}
+
+
+/* BASIC ELEMENTS */
+
+#manualEnlace {
+    color: royalblue;
+    position: fixed;
+    top: 0.3em;
+    right: 80px;
+    z-index: 2000;
+    font-size: 2em;
+}
+
+.text-light {
+    color: #ccc !important;
+}
+
+.text-warning {
+    color: peru !important;
+}
+
+.text-danger {
+    color: tomato !important;
+}
+
+.btn {
+    font-size: 0.9rem;
+    border-radius: 0.15rem;
+}
+
+.btn-outline-danger {
+    color: tomato;
+    border-color: tomato;
+}
+
+.btn-outline-danger:hover {
+    color: #fff;
+    background-color: tomato;
+    border-color: tomato;
+}
+
+.badge {
+    border-radius: 0.15rem;
+}
+
+.badge-primary {
+    background-color: cornflowerblue;
+}
+
+a.badge-primary:hover {
+    background-color: royalblue;
+}
+
+.badge-secondary {
+    background-color: lightslategray;
+}
+
+a.badge-secondary:hover {
+    background-color: gray;
+}
+
+.badge-success {
+    background-color: mediumseagreen;
+}
+
+a.badge-success:hover {
+    background-color: seagreen;
+}
+
+.badge-warning {
+    color: #fff;
+    background-color: #ffc107;
+}
+
+a.badge-warning:hover {
+    color: #fff;
+    background-color: orange;
+}
+
+.badge-danger {
+    background-color: tomato;
+}
+
+a.badge-danger:hover {
+    background-color: orangered;
+}
+
+.badge-light {
+    color: rgba(7, 113, 120, 1) !important;
+    background-color: rgba(7, 113, 120, 0.1) !important;
+}
+
+.badge-green {
+    color: rgba(7, 113, 120, 1) !important;
+    background-color: rgba(7, 113, 120, 0.1) !important;
+}
+
+.badge-category {
+    color: rgba(7, 113, 120, 1) !important;
+    background-color: #eee;
+    line-height: 1em;
+    width: 100%;
+    padding: 0;
+}
+
+
+/* FORMULARIOS */
+
+.alert-form {
+    /* color: rgba(7, 113, 120, 1);
+    background-color: rgba(7, 113, 120, 0.1);
+    border-color: rgba(7, 113, 120, 0.1); */
+    margin-bottom: 1rem;
+}
+
+.alert-form ul {
+    font-size: 0.9rem;
+    color: tomato;
+    margin: 0 -1rem;
+    list-style-position: outside;
+}
+
+label {
+    margin-bottom: .25rem;
+    margin-left: 0.25rem;
+    font-size: 0.9rem;
+    color: rgba(7, 113, 120, 1);
+}
+
+.input-group-text input[type="radio"] {
+    margin-top: 2px;
+}
+
+.form-control:focus {
+    border-color: rgba(7, 113, 120, 0.5);
+    box-shadow: 0 0 0 0.13rem rgba(7, 113, 120, .25);
+}
+
+.help-text {
+    font-size: 0.9rem;
+    margin-left: 0.25rem;
+    color: #999;
+}
+
+.form-error-text {
+    font-size: 0.9rem;
+    margin-left: 0.25rem;
+    color: tomato;
+    min-height: 2em;
+    margin: 1em 0.25rem;
+}
+
+.convenio-observaciones {
+    transition-duration: 1s;
+}
+
+#forzar_dtos {
+    cursor: pointer;
+}
+
+
+/* LISTA CLIENTES */
+
+#filtroBusqueda {
+    margin-bottom: -0.13rem;
+}
+
+#textToSearchHelp {
+    margin-left: 0.25rem;
+}
+
+#clientes-lista {
+    height: 60.5vh;
+    overflow-y: scroll;
+}
+
+#clientes-buttons .col-md-6 {
+    padding-right: 0.25em;
+    padding-left: 0.25em;
+    padding-bottom: 0.75em;
+}
+
+
+/* VISTAS DETALLE CLIENTE, DELEGADO, CONVENIO */
+
+.card {
+    margin-bottom: 1em;
+    border-radius: .15rem !important;
+}
+
+h4 .titulo {
+    color: red
+}
+
+.card-text {
+    margin-bottom: .5em;
+    line-height: 1.3rem;
+}
+
+.card-text small {
+    color: #999;
+}
+
+.caja-dto {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.25rem;
+    border-radius: 0.13rem;
+    background-color: #eee;
+    position: relative;
+    bottom: 0.05rem;
+}
+
+.text-right-to-left {
+    text-align: right !important;
+}
+
+.text-right-to-center {
+    text-align: right !important;
+}
+
+.button-card-header {
+    position: absolute;
+    right: 0;
+    top: 0.55rem;
+    font-size: 1.2rem;
+    color: rgba(7, 113, 120, 1);
+    width: 8.33%;
+    text-align: center;
+}
+
+.icon-ficha-cliente {
+    width: 1em;
+    font-size: 0.7em;
+}
+
+.icon-action {
+    color: rgba(7, 113, 120, 1);
+    padding: 0.15rem;
+}
+
+.icon-action:hover {
+    text-decoration: none;
+    color: rgba(7, 113, 120, 0.5);
+}
+
+.icon-action-disabled {
+    color: #ccc;
+    padding: 0.15rem;
+}
+
+.history-icon {
+    width: 2em;
+    text-align: center;
+}
+
+
+/* MENU SUPER USER */
+
+.btn-admin {
+    color: rgba(7, 113, 120, 0.9);
+    background-color: #eee;
+    border-color: #ddd;
+    height: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-admin:hover {
+    color: #212529;
+    color: rgba(7, 113, 120, 1);
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+}
+
+.btn-admin:focus {
+    box-shadow: 0 0 0 .05rem rgba(7, 113, 120, 0.5);
+}
+
+
+/* TABLAS (solo admin por ahora) */
+
+table td,
+table th {
+    padding: 0.25rem !important;
+    vertical-align: middle !important;
+}
+
+table th {
+    border: none !important;
+}
+
+.col,
+.col-1,
+.col-10,
+.col-11,
+.col-12,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-auto,
+.col-lg,
+.col-lg-1,
+.col-lg-10,
+.col-lg-11,
+.col-lg-12,
+.col-lg-2,
+.col-lg-3,
+.col-lg-4,
+.col-lg-5,
+.col-lg-6,
+.col-lg-7,
+.col-lg-8,
+.col-lg-9,
+.col-lg-auto,
+.col-md,
+.col-md-1,
+.col-md-10,
+.col-md-11,
+.col-md-12,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-md-auto,
+.col-sm,
+.col-sm-1,
+.col-sm-10,
+.col-sm-11,
+.col-sm-12,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-sm-auto,
+.col-xl,
+.col-xl-1,
+.col-xl-10,
+.col-xl-11,
+.col-xl-12,
+.col-xl-2,
+.col-xl-3,
+.col-xl-4,
+.col-xl-5,
+.col-xl-6,
+.col-xl-7,
+.col-xl-8,
+.col-xl-9,
+.col-xl-auto {
+    padding-bottom: 0.25em;
+    align-self: center;
+}
+
+@media only screen and (max-width: 765px) {
+    .navbar {
+        padding: 15px !important;
+    }
+    .container {
+        margin-top: 5.5em;
+    }
+    .titulo {
+        margin-bottom: 0.75rem;
+        padding-left: 0.5rem;
+    }
+    #manualEnlace {
+        top: 0.25em;
+        right: 3em;
+    }
+    .text-right-to-left {
+        text-align: left !important;
+    }
+    .text-right-to-center {
+        text-align: center !important;
+    }
+    .btn {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .titulo {
+        padding-left: 0.5rem;
+    }
+    .card-header {
+        padding: 0.5rem;
+    }
+    .card-body {
+        padding: 0.5rem;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .badge-dto {
+        padding: 0;
+    }
+}

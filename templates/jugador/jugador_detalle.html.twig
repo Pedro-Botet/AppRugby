@@ -1,0 +1,205 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="card"> 
+        <div class="card-header">
+				Tu Perfil
+		</div>
+        <div class="card-body">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <p class="card-text">
+                        <small>Nombre:</small><br/>
+                        {{jugador.nombre}}
+                    </p>
+                    <p class="card-text">
+                        <small>Telefono de contacto:</small><br/>
+                        {{jugador.telefono}}
+                    </p>
+                    <p class="card-text">
+                        <small>Altura:</small><br/>
+                        {{jugador.altura}} cm
+                    </p>
+                </div>
+
+                <div class="col-md-4">
+                    <p class="card-text">
+                        <small>Apellido:</small><br/>
+                        {{jugador.apellido}}
+                    </p>
+                    <p class="card-text">
+                        <small>Año de Nacimiento:</small><br/>
+                        {{jugador.anoNacimiento}}
+                    </p>
+                    <p class="card-text">
+                        <small>Peso:</small><br/>
+                        {{jugador.peso}} Kg
+                    </p>
+                </div>
+                
+                <div class="col-md-4">
+                    <p class="card-text">
+                        <small>Correo electrónico:</small><br/>
+                        {{email}}
+                    </p>
+                    <p class="card-text">
+                        <small>Lesionado:</small><br/>
+                        {% if jugador.lesionado %}
+                            SI
+                        {% else %}
+                            NO
+                        {% endif %}
+                    </p>
+                    <p class="card-text">
+                        <small>Capitan:</small><br/>
+                        {% if jugador.capitan %}
+                            SI
+                        {% else %}
+                            NO
+                        {% endif %}
+                    </p>
+                </div>
+                
+                <div class="col-md-4">
+                    <p class="card-text">
+                        <small>Placajes Totales:</small><br/>
+                        {{jugador.placajesTotal}}
+                    </p>
+                    <p class="card-text">
+                        <small>Placajes Completados:</small><br/>
+                        {{jugador.placajesDone}}
+                    </p>
+                    <p class="card-text">
+                        <small>Melee Totales:</small><br/>
+                        {{jugador.meleeTotal}}
+                    </p>
+                </div>
+
+                <div class="col-md-4">
+                    <p class="card-text">
+                    <small>Touch Totales:</small><br/>
+                        {{jugador.touchTotal}}
+                    </p>
+                    <p class="card-text">
+                        <small>Touch Ganadas:</small><br/>
+                        {{jugador.touchDone}}
+                    </p>
+                    <p class="card-text">
+                        <small>Tarjeta(s) Amarilla(s):</small><br/>
+                        {{jugador.tarjetaAmarilla}}
+                    </p>
+                </div>
+
+                <div class="col-md-4">
+                    <p class="card-text">
+                        <small>Eres Chutador:</small><br/>
+                        {% if jugador.esChutador %}
+                            SI
+                        {% else %}
+                            NO
+                        {% endif %}
+                    </p>
+                    <p class="card-text">
+                        <small>Posición:</small><br/>
+                        {{jugador.posicion}}
+                    </p>
+                {% if jugador.posicion <= '8' %}
+                    <p class="card-text">
+                        <small>Ensayo(s):</small><br/>
+                        {{jugador.ensayo}} 
+                    </p>
+                </div>
+                
+                <div class="col-md-4">
+                    <p class="card-text">
+                        <small>Melee Ganadas:</small><br/>
+                        {{jugador.meleeDone}}
+                    </p>
+                    <p class="card-text">
+                        <small>Minutos Jugados:</small><br/>
+                        {{jugador.minutosJugados}} minutos
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p class="card-text">
+                        <small>Tarjeta(s) Rojas(s):</small><br/>
+                        {{jugador.tarjetaRoja}}
+                    </p>
+                </div>
+                {% else %}
+                    <div class="col-md-4">
+                        <p class="card-text">
+                            <small>Chutes a Palos Totales:</small><br/>
+                            {{jugador.chutePalosTotal}}
+                        </p>
+                        <p class="card-text">
+                            <small>Chutes a Palos Dentro:</small><br/>
+                            {{jugador.chutePalosDone}}
+                        </p>
+                    </div>
+                {% endif %}
+
+				</div>
+			</div>
+		</div>
+
+        <div class="card"> 
+        <div class="card-header">
+				Tus Estadísticas
+		</div>
+			<div class="card-body">
+				<div class="row no-gutters">
+					<div class="col-md-4">
+						<p class="card-text">
+                            <small>Efectividad Placaje:</small><br/>
+                            {% if jugador.placajesDone != 0 %}
+							    {{((jugador.placajesDone * 100) / jugador.placajesTotal)|number_format(2)}} %
+                            {% else %}
+                                0
+                            {% endif %}
+						</p>
+                    </div>
+                    {% if jugador.posicion <= '8' %}
+                        <div class="col-md-4">
+                            <p class="card-text"> 
+                                <small>Efectividad en Touch:</small><br/>
+                                {% if jugador.placajesDone != 0 %}
+                                {{((jugador.TouchDone * 100) / jugador.TouchTotal)|number_format(2)}} %
+                                {% else %}
+                                    0
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="card-text">
+                                <small>Efectividad Melee:</small><br/>
+                                {% if jugador.meleeDone != 0 %}
+                                {{((jugador.meleeDone * 100) / jugador.meleeTotal)|number_format(2)}} %
+                                {% else %}
+                                    0
+                                {% endif %}
+                            </p>
+                        </div>
+                    {% else %}
+                        <div class="col-md-4">
+                            <p class="card-text">
+                                <small>Efectividad Chutes a Palos:</small><br/>
+                                {{((jugador.chutePalosDone * 100) / jugador.chutePalosTotal)|number_format(2)}}
+                            </p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="bottom-buttons">
+            <p class="form-error-text">
+                <button class="btn btn-outline-info" onclick="window.history.back()">VOLVER ATRAS</button>
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

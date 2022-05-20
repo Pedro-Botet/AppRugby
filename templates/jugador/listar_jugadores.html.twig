@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    listar jugadores
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<h1>Listar Jugadores</h1>
+
+		<table class="table table-hover">
+			<tr>
+				<th>nombre</th>
+				<th>apellido</th>
+				{% for jugador in jugadores %}
+
+							<tr>
+								<td>{{ jugador.nombre }}</td>
+								<td>{{ jugador.apellido }}</td>
+								<td>
+									<a href="{{ path('jugador_detalle', {jugadorId: jugador.id}) }}" class="btn btn-sm btn-outline-secondary">ver detalle</a>
+								</td>
+
+							</tr>
+
+
+				{% endfor %}
+			</tr>
+		</table>
+		<p class="text-left">
+			<a class="btn btn-outline-info" href="#" onclick="history.go(-1)">volver atras</a>
+		</p>
+	</div>
+
+{% endblock %}

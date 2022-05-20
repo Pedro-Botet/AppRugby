@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h3 class="titulo">{{ titulo }}</h3>
+        <div class="form">
+            {{ form_start(formEditar) }}
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(formEditar.telefono) }}
+                        {{ form_widget(formEditar.telefono) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(formEditar.altura) }}
+                        {{ form_widget(formEditar.altura) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(formEditar.peso) }}
+                        {{ form_widget(formEditar.peso) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(formEditar.esChutador) }}
+                        {{ form_widget(formEditar.esChutador) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(formEditar.lesionado) }}
+                        {{ form_widget(formEditar.lesionado) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(formEditar.posicion) }}
+                        {{ form_widget(formEditar.posicion) }}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-buttons">
+                <p class="form-error-text" id="form_register_error"></p>
+				<button type="submit" id="submitButton" class="btn btn-outline-secondary">GUARDAR</button>
+				<button class="btn btn-outline-info" onclick="window.history.back()">CANCELAR</button>
+			</div>
+            {{ form_end(formEditar) }}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h3 class="titulo">{{titulo}}</h3>
+    
+    <div class="form">
+        {{ form_start(form) }}
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label(form.nombre) }}
+                    {{ form_widget(form.nombre) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label(form.apellido) }}
+                    {{ form_widget(form.apellido) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label(form.telefono) }}
+                    {{ form_widget(form.telefono) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label(form.anoNacimiento) }}
+                    {{ form_widget(form.anoNacimiento) }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label(form.altura) }}
+                    {{ form_widget(form.altura) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label(form.peso) }}
+                    {{ form_widget(form.peso) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label(form.capitan) }}
+                    {{ form_widget(form.capitan) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label(form.esChutador) }}
+                    {{ form_widget(form.esChutador) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label(form.posicion) }}
+                    {{ form_widget(form.posicion) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-buttons">
+            <p class="form-error-text" id="form_register_error"></p>
+            <button type="submit" id="submitButton" class="btn btn-outline-secondary">GUARDAR</button>
+            <button class="btn btn-outline-info" onclick="window.history.back()">CANCELAR</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

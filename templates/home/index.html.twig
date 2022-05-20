@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenido a tu AppRugby
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+        {% for flashSucces in app.flashes('success') %}
+            <div class="alert alert-success" role="alert">{{ flashSucces }}</div>
+        {% endfor %}
+    </div>
+    
+{% endblock %}

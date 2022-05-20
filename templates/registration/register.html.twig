@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h3 class="titulo">Sign In</h3>
+        <div class="form">
+            {{ form_start(registrationForm) }}
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(registrationForm.email) }}
+                        {{ form_widget(registrationForm.email) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(registrationForm.plainPassword) }}
+                        {{ form_widget(registrationForm.plainPassword) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(registrationForm.userType) }}
+                        {{ form_widget(registrationForm.userType) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-buttons">
+                <p class="form-error-text" id="form_register_error"></p>
+				<button type="submit" id="submitButton" class="btn btn-outline-secondary">REGISTRAR</button>
+				<button class="btn btn-outline-info" onclick="window.history.back()">CANCELAR</button>
+			</div>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+
+{% endblock %}
