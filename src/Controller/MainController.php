@@ -38,7 +38,7 @@ class MainController extends AbstractController
 
     /**
      * 
-     * @Route("/estadisticas", name="estasticas")
+     * @Route("/estadisticas", name="estadisticas")
      */
     public function estaditicas(JugadorRepository $jugadorRepository)
     {

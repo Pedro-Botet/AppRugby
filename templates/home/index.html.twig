@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bienvenido a tu AppRugby
+{% block title %}TheAppRugby
 {% endblock %}
 
 {% block body %}
@@ -9,6 +9,44 @@
         {% for flashSucces in app.flashes('success') %}
             <div class="alert alert-success" role="alert">{{ flashSucces }}</div>
         {% endfor %}
+        
+        </br>
+        <h2>
+            Bienvenido a TheRugbyApp
+        </h2>
+        </br>
+        </br>
+        </br>
+
+        <div class="row">
+
+            {% if app.user.userType == 'Jugador' %}
+
+			    <div class="col-4 super-home-box">
+                    <a class="btn btn-block btn-admin" href="{{ path('miCuentaJugador', { userId: app.user.id }) }}">Mi cuenta</a>
+                </div>
+                <div class="col-4 super-home-box">
+                    <a href="{{ path('listar_jugadores')}}" class="btn btn-block btn-admin">Los Jugadores</a>
+                </div>
+                <div class="col-4 super-home-box">
+                    <a href="{{ path('listar_staff')}}" class="btn btn-block btn-admin">El Staff</a>
+                </div>
+
+			{% else %}
+                <div class="col-3 super-home-box">
+                    <a class="btn btn-block btn-admin" href="{{ path('miCuentaStaff', { userId: app.user.id }) }}">Mi cuenta</a>
+                </div>
+                <div class="col-3 super-home-box">
+                     <a href="{{ path('listar_jugadores')}}" class="btn btn-block btn-admin">Los Jugadores</a>
+                </div>
+                <div class="col-3 super-home-box">
+                   <a href="{{ path('listar_staff')}}" class="btn btn-block btn-admin">El Staff</a>
+                </div>
+                <div class="col-3 super-home-box">
+                    <a class="btn btn-block btn-admin" href="{{ path('uploadJornada', { userId: app.user.id }) }}">Añadir Jornada</a>
+                </div>
+            {% endif %} 
+		</div>  
     </div>
     
 {% endblock %}

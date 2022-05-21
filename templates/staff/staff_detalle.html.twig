@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="card"> 
+            <div class="card-header">
+                    Tu Perfil
+            </div>
+            <div class="card-body">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <p class="card-text">
+                            <small>Nombre:</small><br/>
+                            {{staff.nombre}}
+                        </p>
+                        <p class="card-text">
+                            <small>Telefono de contacto:</small><br/>
+                            {{staff.telefono}}
+                        </p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <p class="card-text">
+                            <small>Apellido:</small><br/>
+                            {{staff.apellido}}
+                        </p>
+                        <p class="card-text">
+                            <small>Email:</small><br/>
+                            {{email}}
+                        </p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-buttons">
+            <p class="form-error-text">
+                <button class="btn btn-outline-info" onclick="window.history.back()">VOLVER ATRAS</button>
+            </p>
+        </div>
+
+    </div>
+
+{% endblock %}
