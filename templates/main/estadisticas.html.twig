@@ -1,0 +1,324 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="card"> 
+        <div class="card-header">
+				Top Performers
+		</div>
+        <table class="table table-hover">
+			<tr>
+				<th>Accion</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Total</th>
+				<th>Porcentaje</th>
+
+				<tr>
+					<td>Placar</td>
+					{% if placajes != null %}
+					<td>{{ placajes.nombre }}</td>
+					<td>{{ placajes.apellido }}</td>
+					<td>{{ placajes.getPlacajesDone }}</td>
+					<td>{{((placajes.placajesDone * 100) / placajes.placajesTotal)|number_format(2)}} %</td>
+					<td>
+						<a href="{{ path('jugador_detalle', {jugadorId: placajes.id}) }}" class="btn btn-sm btn-outline-secondary">Ver Jugador</a>
+					</td>
+					{% else %}
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					{% endif %}
+				</tr>
+
+				<tr>
+					<td>Tarjetas Amarillas</td>
+					{% if ensayo != null %}
+					<td>{{ tarjetasAmarilla.nombre }}</td>
+					<td>{{ tarjetasAmarilla.apellido }}</td>
+					<td>{{ tarjetasAmarilla.getTarjetaAmarilla }}</td>
+					<td></td>
+					<td>
+						<a href="{{ path('jugador_detalle', {jugadorId: tarjetasAmarilla.id}) }}" class="btn btn-sm btn-outline-secondary">Ver Jugador</a>
+					</td>
+					{% else %}
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					{% endif %}
+				</tr>
+
+				<tr>
+					<td>Tarjetas Rojas</td>
+					{% if tarjetasRoja != null %}
+					<td>{{ tarjetasRoja.nombre }}</td>
+					<td>{{ tarjetasRoja.apellido }}</td>
+					<td>{{ tarjetasRoja.tarjetaRoja }}</td>
+					<td></td>
+					<td>
+						<a href="{{ path('jugador_detalle', {jugadorId: tarjetasRoja.id}) }}" class="btn btn-sm btn-outline-secondary">Ver Jugador</a>
+					</td>
+					{% else %}
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					{% endif %}
+				</tr>
+
+				<tr>
+					<td>Ensayos</td>
+					{% if ensayo != null %}
+					<td>{{ ensayo.nombre }}</td>
+					<td>{{ ensayo.apellido }}</td>
+					<td>{{ ensayo.ensayo }}</td>
+					<td></td>
+					<td>
+						<a href="{{ path('jugador_detalle', {jugadorId: ensayo.id}) }}" class="btn btn-sm btn-outline-secondary">Ver Jugador</a>
+					</td>
+					{% else %}
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					{% endif %}
+				</tr>
+
+				<tr>
+					<td>Chutes a Palos</td>
+					{% if chutesPalos != null %}
+					<td>{{ chutesPalos.nombre }}</td>
+					<td>{{ chutesPalos.apellido }}</td>
+					<td>{{ chutesPalos.chutePalosDone }}</td>
+					<td>{{ ((chutesPalos.chutePalosDone * 100) / chutesPalos.chutePalosTotal)|number_format(2) }} %</td>
+					<td>
+						<a href="{{ path('jugador_detalle', {jugadorId: chutesPalos.id}) }}" class="btn btn-sm btn-outline-secondary">Ver Jugador</a>
+					</td>
+					{% else %}
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					{% endif %}
+				</tr>
+
+				<tr>
+					<td>Minutos Jugados</td>
+					{% if minutos != null %}
+					<td>{{ minutos.nombre }}</td>
+					<td>{{ minutos.apellido }}</td>
+					<td>{{ minutos.minutosJugados }}</td>
+					<td></td>
+					<td>
+						<a href="{{ path('jugador_detalle', {jugadorId: minutos.id}) }}" class="btn btn-sm btn-outline-secondary">Ver Jugador</a>
+					</td>
+					{% else %}
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					{% endif %}
+				</tr>
+
+				<tr>
+					<td>Melee</td>
+					{% if melee != null %}
+					<td>{{ melee.nombre }}</td>
+					<td>{{ melee.apellido }}</td>
+					<td>{{ melee.meleeDone }}</td>
+					<td>{{((melee.meleeDone * 100) / melee.meleeTotal)|number_format(2)}} %</td>
+					<td>
+						<a href="{{ path('jugador_detalle', {jugadorId: melee.id}) }}" class="btn btn-sm btn-outline-secondary">Ver Jugador</a>
+					</td>
+					{% else %}
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					{% endif %}
+				</tr>
+
+				<tr>
+					<td>Touch</td>
+					{% if touch != null %}
+					<td>{{ touch.nombre }}</td>
+					<td>{{ touch.apellido }}</td>
+					<td>{{ touch.touchDone }}</td>
+					<td>{{ ((touch.touchDone * 100) / touchTotal)|number_format(2) }} </td>
+					<td>
+						<a href="{{ path('jugador_detalle', {jugadorId: touch.id}) }}" class="btn btn-sm btn-outline-secondary">Ver Jugador</a>
+					</td>
+					{% else %}
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					{% endif %}
+				</tr>
+			</tr>
+		</table>
+			
+	</div>
+
+    <div class="card"> 
+        <div class="card-header">
+				Estadísticas Equipo
+		</div>
+		<div class="card-body">
+			<div class="row no-gutters">
+				<div class="col-md-3">
+				<p class="card-text">
+					<small>Placajes Totales:</small><br/>
+					{% if placajesTotal != 0 %}
+						{{ placajesTotal }} 
+					{% else %}
+						0
+					{% endif %}
+				</p>
+				</div>
+				<div class="col-md-3">
+					<p class="card-text"> 
+						<small>Touch Total:</small><br/>
+						{% if touchTotal != 0 %}
+						{{ touchTotal }} 
+						{% else %}
+							0
+						{% endif %}
+					</p>
+				</div>
+				<div class="col-md-3">
+					<p class="card-text">
+						<small>Melee Total:</small><br/>
+						{% if meleeTotal != 0 %}
+						{{ meleeTotal}}
+						{% else %}
+							0
+						{% endif %}
+					</p>
+				</div>
+				<div class="col-md-3">
+					<p class="card-text">
+						<small>Chutes a Palos Total:</small><br/>
+						{% if chutesPalosTotal != 0 %}
+						{{ chutesPalosTotal}}
+						{% else %}
+							0
+						{% endif %}
+					</p>
+				</div>
+					
+				<div class="col-md-3">
+					<p class="card-text">
+						<small>Efectividad Placaje:</small><br/>
+							{{ placajesPorcentaje }} %
+					</p>
+				</div>
+					<div class="col-md-3">
+						<p class="card-text"> 
+							<small>Efectividad en Touch:</small><br/>
+							{{ touchPorcentaje }} %
+						</p>
+					</div>
+					<div class="col-md-3">
+						<p class="card-text">
+							<small>Efectividad Melee:</small><br/>
+							{{ meleePorcentaje }} %
+						</p>
+					</div>
+					<div class="col-md-3">
+						<p class="card-text">
+							<small>Efectividad Chutes a Palos:</small><br/>
+							{% if chutesPalosPorcentaje != 0 %}
+							{{ chutesPalosPorcentaje}} %
+							{% else %}
+								0
+							{% endif %}
+						</p>
+					</div>
+// AAAQQUIIII
+					<div class="col-md-3">
+						<p class="card-text">
+							<small>Minutos Jugados Totales:</small><br/>
+							{% if totalMinutos != 0 %}
+								{{ totalMinutos }} 
+							{% else %}
+								0
+							{% endif %}
+						</p>
+					</div>
+					<div class="col-md-3">
+						<p class="card-text"> 
+							<small>Tarjetas Amarillas Total:</small><br/>
+							{% if totalTarjetasAmarilla != 0 %}
+							{{ totalTarjetasAmarilla }} 
+							{% else %}
+								0
+							{% endif %}
+						</p>
+					</div>
+					<div class="col-md-3">
+						<p class="card-text">
+							<small>Tarjetas Rojas Total:</small><br/>
+							{% if totalTarjetasRoja != 0 %}
+							{{ totalTarjetasRoja}}
+							{% else %}
+								0
+							{% endif %}
+						</p>
+					</div>
+					<div class="col-md-3">
+						<p class="card-text">
+							<small>Ensayos Total:</small><br/>
+							{% if totalEnsayo != 0 %}
+							{{ totalEnsayo}}
+							{% else %}
+								0
+							{% endif %}
+						</p>
+					</div>
+
+					<div class="col-md-3">
+						<p class="card-text">
+							<small>Tarjetas Rojas Total:</small><br/>
+							{% if lesioanadoTotal != 0 %}
+							{{ lesioanadoTotal}}
+							{% else %}
+								0
+							{% endif %}
+						</p>
+					</div>
+					<div class="col-md-3">
+						<p class="card-text">
+							<small>Ensayos Total:</small><br/>
+							{% if chutadorTotal != 0 %}
+							{{ chutadorTotal}}
+							{% else %}
+								0
+							{% endif %}
+						</p>
+					</div>
+
+                </div>
+            </div>
+        </div>
+        <div class="bottom-buttons">
+            <p class="form-error-text">
+                <button class="btn btn-outline-info" onclick="window.history.back()">VOLVER ATRAS</button>
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
