@@ -1,30 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Listar Jugadores
+    Listar Staff
 {% endblock %}
 
 {% block body %}
 
 	<div class="container">
-		<h1>Listar Jugadores</h1>
+		<h1>Listar Staff</h1>
 
 		<table class="table table-hover">
 			<tr>
 				<th>Nombre</th>
 				<th>Apellido</th>
-				{% for jugador in jugadores %}
+				{% for Staff in staff %}
 
 							<tr>
-								<td>{{ jugador.nombre }}</td>
-								<td>{{ jugador.apellido }}</td>
+								<td>{{ Staff.nombre }}</td>
+								<td>{{ Staff.apellido }}</td>
 								<td>
-									<a href="{{ path('jugador_detalle', {jugadorId: jugador.id}) }}" class="btn btn-sm btn-outline-secondary">Ver detalle</a>
+									<a href="{{ path('staff_detalle', {staffId: Staff.id}) }}" class="btn btn-sm btn-outline-secondary">Ver detalle</a>
 								</td>
-
 							</tr>
-
-
 				{% endfor %}
 			</tr>
 		</table>

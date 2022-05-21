@@ -61,7 +61,7 @@ class StaffController extends AbstractController
     }
 
     /**
-     * @Route("staff/detalle/{userId}", name="miCuentaStaff")
+     * @Route("staff/miCuenta/{userId}", name="miCuentaStaff")
      */
     public function detalleCuenta(StaffRepository $staffRepository, $userId)
     {
@@ -77,6 +77,32 @@ class StaffController extends AbstractController
                 'email' => $this->getUser()->getEmail()
             ]);
         }
+    }
+
+    /**
+     * 
+     * @Route("staff/listar", name="listar_staff")
+     */
+    public function listarJugadores(StaffRepository $staffRepository)
+    {
+        return $this->render('staff/listar_staff.html.twig', [
+            'staff' =>$staffRepository->findAll()
+        ]);
+    }
+
+    /**
+     * 
+     * @Route("staff/detalle/{staffId}", name="staff_detalle")
+     */
+    public function jugadorDetalle(StaffRepository $staffRepository, UserRepository $userRepository, $staffId)
+    {
+        $staff = $staffRepository->find($staffId);
+        $email = $userRepository->findOneBy(['id' => $staff->getUser()])->getEmail();
+       
+        return $this->render('staff/staff_detalle.html.twig', [
+            'staff' => $staff,
+            'email' => $email
+        ]);
     }
 
     /**
@@ -123,69 +149,76 @@ class StaffController extends AbstractController
      */
     public function uploadJornada(Request $request, JugadorRepository $jugadoresRepository, EntityManagerInterface $entityManager, SluggerInterface $slugger)
     {
-        $jornada = new Jornadas();
-        $form = $this->createForm(UploadJornadaType::class, $jornada);
-        
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-
-            /** @var UploadedFile $file */
-            $file = $form->get('jornada')->getData();
+        if($this->getUSer()->getUserType() == 'Staff'){
+            $jornada = new Jornadas();
+            $form = $this->createForm(UploadJornadaType::class, $jornada);
             
-            if ($file) {
+            $form->handleRequest($request);
 
-                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            if ($form->isSubmitted()) {
+
+                /** @var UploadedFile $file */
+                $file = $form->get('jornada')->getData();
                 
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
+                if ($file) {
 
-                $newFilename = $safeFilename.'-'.uniqid().'.csv';
+                    $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                    
+                    // this is needed to safely include the file name as part of the URL
+                    $safeFilename = $slugger->slug($originalFilename);
 
-                try{
-                $file->move(
-                    $this->getParameter('uploads_dir'),
-                    $newFilename
-                );
-                }catch (FileException $e) {
+                    $newFilename = $safeFilename.'-'.uniqid().'.csv';
+
+                    try{
+                    $file->move(
+                        $this->getParameter('uploads_dir'),
+                        $newFilename
+                    );
+                    }catch (FileException $e) {
+                        $this->render('error.html.twig',[
+                            'error' => 'Se ha producido un error, vuelva a subir el archivo'
+                        ]);
+                    }
+                }else{
                     $this->render('error.html.twig',[
                         'error' => 'Se ha producido un error, vuelva a subir el archivo'
                     ]);
                 }
-            }else{
-                $this->render('error.html.twig',[
-                    'error' => 'Se ha producido un error, vuelva a subir el archivo'
-                ]);
-            }
 
-            $datosPartido = $this->getCsvRowsAsArrays($newFilename);
+                $datosPartido = $this->getCsvRowsAsArrays($newFilename);
 
-            
-            $actualizados = 0;
+                
+                $actualizados = 0;
 
-            foreach ($datosPartido as $dato) {
+                foreach ($datosPartido as $dato) {
 
-                if ($jugadorExiste = $jugadoresRepository->findOneBy(['nombre' => $dato['jugador']])){
-                    
-                    $this->updateJugador($jugadorExiste, $dato);
-                    
-                    $actualizados++;
+                    if ($jugadorExiste = $jugadoresRepository->findOneBy(['nombre' => $dato['jugador']])){
+                        
+                        $this->updateJugador($jugadorExiste, $dato);
+                        
+                        $actualizados++;
+                    }
+
                 }
 
+                $entityManager->flush();
+
+                return $this->redirectToRoute('staff/jornada_exito.html.twig', [
+                    'actualizados' => $actualizados
+                ]);
             }
+                
 
-            $entityManager->flush();
-
-            return $this->redirectToRoute('staff/jornada_exito.html.twig', [
-                'actualizados' => $actualizados
+            return $this->render('staff/jornada_upload.html.twig', [
+                'form' => $form->createView(),
+                'titulo' => 'Subir Jornada'
+            ]);
+        }else{
+            return $this->render('error.html.twig',[
+                'error' => 'Se ha producido un error'
             ]);
         }
-            
-
-        return $this->render('staff/jornada_upload.html.twig', [
-            'form' => $form->createView(),
-            'titulo' => 'Subir Jornada'
-        ]);
     }
 
     
