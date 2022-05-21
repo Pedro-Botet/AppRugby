@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Command\ImportarDatosCommand;
 use App\Entity\Staff;
 
 use App\Form\StaffEditarType;
@@ -13,9 +14,12 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Length;
 
 class StaffController extends AbstractController
 {
@@ -108,4 +112,63 @@ class StaffController extends AbstractController
         }
     }
 
+
+    /**
+     * 
+     * @Route("staff/upload_jornada" name="uploadJornada")
+     */
+    public function uploadJornada(Request $request, ImportarDatosCommand $importarDatos)
+    {
+        $form = $this->createFormBuilder()
+            ->add('nJornada', TextType::class,[
+                'label' => 'Introduce el Número de la Jornada',
+                'attr' => ['class' => 'form-control'],
+                'constraints' => [
+                    new Length([
+                        'min' => 1,
+                        'minMessage' => 'El nombre no puede ser inferior a {{ limit }} carácteres',
+                        'max' => 2,
+                        'maxMessage' => 'El nombre no pude ser superior a {{ limit }} carácteres',
+                    ])
+                ],
+            ])
+            ->add('jornada', FileType::class, [
+                'label' => "Adjuntar nueva jornada en formato jornada_'nºjornada'.csv",
+            ])
+            ->getForm()
+        ;
+        
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var UploadedFile $file */
+            $file = $request->files->get('jornada');
+            $fileName = ($form->get('nJornada')->getData())->prepend('jornada'); 
+
+            if ($file) {
+                $file->move(
+                    $this->getParameter('projectDir') . 'public/DatosPartidos/',
+                    $file
+                );
+            }else{
+                $this->render('error.html.twig',[
+                    'error' => 'Se ha producido un error, vuelva a subir el archivo'
+                ]);
+            }
+
+            $projectDir = $this->getParameter('projectDir');
+            
+            $importarDatos();
+            
+        }
+
+        return $this->render('staff/miCuenta_editar.html.twig', [
+            'form' => $form->createView(),
+            'titulo' => 'Subir Jornada'
+        ]);
+    
+
+    }
 }

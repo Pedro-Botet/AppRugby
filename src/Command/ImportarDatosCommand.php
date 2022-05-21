@@ -6,6 +6,7 @@ use App\Entity\Jugador;
 
 use Doctrine\ORM\EntityManagerInterface;
 
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -18,14 +19,15 @@ use Symfony\Component\Serializer\Serializer;
 
 class ImportarDatosCommand extends Command
 {
-    protected static $defaultName = 'app:ImportarDatos';
-    protected static $defaultDescription = 'Añadir datos partido';
+    // protected static $defaultName = 'app:ImportarDatos';
+    // protected static $defaultDescription = 'Añadir datos partido';
     private $entityManager;
 
-    public function __construct($projectDir, EntityManagerInterface $entityManager)
+    public function __construct($projectDir, EntityManagerInterface $entityManager, string $fileName)
     {
         $this->projectDir = $projectDir;
         $this->entityManager = $entityManager;
+        $this->fileName = $fileName;
 
         parent::__construct();
     }
@@ -33,15 +35,16 @@ class ImportarDatosCommand extends Command
     protected function configure(): void
     {
         $this
-            ->addArgument('fecha_partido', InputArgument::OPTIONAL, 'Fecha del Partido', date_create()->format('d-m-Y'))
+            ->setName('app:ImportarDatos')
+            ->setDescription('Añadir datos jornada en formato .csv')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $fechaPartido = $input->getArgument('fecha_partido');
+        // $fechaPartido = $input->getArgument('fecha_partido');
 
-        $datosPartido = $this->getCsvRowsAsArrays($fechaPartido);
+        $datosPartido = $this->getCsvRowsAsArrays($this->jornadaFile);
 
         $jugadoresRepository = $this->entityManager->getRepository(Jugador::class);
         
@@ -69,7 +72,7 @@ class ImportarDatosCommand extends Command
 
     public function getCsvRowsAsArrays($fechaPartido)
     {
-        $inputFile = $this->projectDir . '/public/DatosPartidos/' . $fechaPartido . '.csv';
+        $inputFile = $this->projectDir . '/public/DatosPartidos/$fileName.csv';
 
         $decoder = new Serializer([new ObjectNormalizer()], [new CsvEncoder()]);
 

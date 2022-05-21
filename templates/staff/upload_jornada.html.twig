@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h3 class="titulo">{{ titulo }}</h3>
+        <div class="form">
+            {{ form_start(form) }}
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(form.nJornada) }}
+                        {{ form_widget(form.nJornada) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.jornada) }}
+                        {{ form_widget(form.jornada) }}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-buttons">
+                <p class="form-error-text" id="form_register_error"></p>
+				<button type="submit" id="submitButton" class="btn btn-outline-secondary">GUARDAR</button>
+				<button class="btn btn-outline-info" onclick="window.history.back()">CANCELAR</button>
+			</div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}
