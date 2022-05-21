@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h3 class="titulo">Jornada Subida con Exito</h3>
+        <div class="form">
+            <h2>La Jornada ha sido subida con exito!</h2>
+            <h2>Se ha actualizado {{ actualizados }} Jugadores<h2>
+            
+            <div class="bottom-buttons">
+                <p class="form-error-text" id="form_register_error"></p>
+				<button type="submit" id="submitButton" class="btn btn-outline-secondary" href="{{ path('app_homepage') }}">Inicio</button>
+			</div>
+        </div>
+    </div>
+
+{% endblock %}
