@@ -155,7 +155,7 @@
 					<td>{{ touch.nombre }}</td>
 					<td>{{ touch.apellido }}</td>
 					<td>{{ touch.touchDone }}</td>
-					<td>{{ ((touch.touchDone * 100) / touchTotal)|number_format(2) }} </td>
+					<td>{{ ((touch.touchDone * 100) / touchTotal)|number_format(2) }} %</td>
 					<td>
 						<a href="{{ path('jugador_detalle', {jugadorId: touch.id}) }}" class="btn btn-sm btn-outline-secondary">Ver Jugador</a>
 					</td>
@@ -247,12 +247,12 @@
 							{% endif %}
 						</p>
 					</div>
-// AAAQQUIIII
+
 					<div class="col-md-3">
 						<p class="card-text">
 							<small>Minutos Jugados Totales:</small><br/>
 							{% if totalMinutos != 0 %}
-								{{ totalMinutos }} 
+								{{ totalMinutos }} minutos
 							{% else %}
 								0
 							{% endif %}
@@ -288,28 +288,6 @@
 							{% endif %}
 						</p>
 					</div>
-
-					<div class="col-md-3">
-						<p class="card-text">
-							<small>Tarjetas Rojas Total:</small><br/>
-							{% if lesioanadoTotal != 0 %}
-							{{ lesioanadoTotal}}
-							{% else %}
-								0
-							{% endif %}
-						</p>
-					</div>
-					<div class="col-md-3">
-						<p class="card-text">
-							<small>Ensayos Total:</small><br/>
-							{% if chutadorTotal != 0 %}
-							{{ chutadorTotal}}
-							{% else %}
-								0
-							{% endif %}
-						</p>
-					</div>
-
                 </div>
             </div>
         </div>
