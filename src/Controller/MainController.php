@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\JugadorRepository;
-use App\Repository\UserRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -37,6 +37,7 @@ class MainController extends AbstractController
     }
 
     /**
+     * Muestra las estidísticas del equipo
      * 
      * @Route("/estadisticas", name="estadisticas")
      */
@@ -151,7 +152,7 @@ class MainController extends AbstractController
             'placajes' => $jugadorRepository->find($placajes),
             'tarjetasAmarilla' => $jugadorRepository->find($tarjetasAmarilla),
             'tarjetasRoja' => $jugadorRepository->find($tarjetasRoja),
-            'ensayo' => $jugadorRepository->find($Ensayo),
+            'ensayo' => $jugadorRepository->find($ensayo),
             'chutesPalos' => $jugadorRepository->find($chutesPalos),
             'minutos' => $jugadorRepository->find($minutos),
             'melee' => $jugadorRepository->find($melee),
@@ -173,6 +174,9 @@ class MainController extends AbstractController
         ]);
     }
 
+    /**
+     * Función que calcula el porcentaje
+     */
     public function getPorcentaje($total, $done)
     {
         $resultado = 0;
