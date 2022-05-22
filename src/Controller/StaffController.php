@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Jornadas;
 use App\Entity\Staff;
 
 use App\Form\StaffEditarType;
@@ -161,8 +160,8 @@ class StaffController extends AbstractController
     {
 
         if($this->getUSer()->getUserType() == 'Staff'){
-            $jornada = new Jornadas();
-            $form = $this->createForm(UploadJornadaType::class, $jornada);
+
+            $form = $this->createForm(UploadJornadaType::class);
             
             $form->handleRequest($request);
 
