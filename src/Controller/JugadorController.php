@@ -31,6 +31,7 @@ class JugadorController extends AbstractController
         $form = $this->createForm(JugadorNewType::class, $jugador);
         $form->handleRequest($request);
 
+        // Si $form esta corrento relleno $jugador con los valores de $form y lo inicializo a 0 para aquellos valores que no se piden en el $form
         if($form->isSubmitted() && $form->isValid()) {
 
             $jugador->setUser($user)
@@ -117,6 +118,7 @@ class JugadorController extends AbstractController
             $form =$this->createForm(JugadorEditarType::class);
             $form->handleRequest($request);
 
+            // Si el jugador no ha querido editar el campo lo deja como está, sino lo modifica
             if($form->isSubmitted() && $form->isValid()){
 
                 if($form->get('peso')->getData() != null){

@@ -48,7 +48,6 @@ class StaffNewType extends AbstractType
                         'maxMessage' => 'El télefono no puede ser superior a {{ limit }} caracteres',
                     ])
                 ],
-                'required' => false,
             ])
         ;
     }

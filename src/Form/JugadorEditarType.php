@@ -36,6 +36,7 @@ class JugadorEditarType extends AbstractType
                         'maxMessage' => 'El Altura no pude ser superior a {{ limit }} carácteres',
                     ])
                 ],
+                'required' => false,
             ])
             ->add('peso', TextType::class, [
                 'label' => 'Introduzca su Peso en Kilogramos',
@@ -46,6 +47,7 @@ class JugadorEditarType extends AbstractType
                         'maxMessage' => 'El Peso no puede ser superior a {{ limit }} caracteres',
                     ])
                 ],
+                'required' => false,
             ])
             ->add('lesionado', ChoiceType::class, [
                 'label' => 'Estas Lesionado?',
@@ -73,6 +75,7 @@ class JugadorEditarType extends AbstractType
                     'Ala Abierto' => 14,
                     'Arrier' => 15
                 ],
+                'required' => false,
             ])
             ->add('esChutador', ChoiceType::class, [
                 'label' => 'Eres Chutador?',
@@ -81,6 +84,7 @@ class JugadorEditarType extends AbstractType
                     'No' => false,
                     'Si' => true
                 ],
+                'required' => false,
             ])
         ;
     }

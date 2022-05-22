@@ -197,7 +197,6 @@ class StaffController extends AbstractController
                 }
 
                 $datosPartido = $this->getCsvRowsAsArrays($newFilename);
-
                 
                 $actualizados = 0;
 
@@ -224,12 +223,12 @@ class StaffController extends AbstractController
                     'actualizados' => $actualizados
                 ]);
             }
-                
 
             return $this->render('staff/jornada_upload.html.twig', [
                 'form' => $form->createView(),
                 'titulo' => 'Subir Jornada'
             ]);
+
         }else{
             return $this->render('error.html.twig',[
                 'error' => 'Se ha producido un error'
@@ -245,8 +244,7 @@ class StaffController extends AbstractController
     {
         $inputFile = $this->getParameter('uploads_dir') . $newFilename;
         
-        $decoder = new Serializer([new ObjectNormalizer()], [new CsvEncoder()]);
-
+        $decoder = new Serializer([new ObjectNormalizer()], [new CsvEncoder([';', '"', '', '.'])]);
 
         return $decoder->decode(file_get_contents($inputFile), 'csv');
     }

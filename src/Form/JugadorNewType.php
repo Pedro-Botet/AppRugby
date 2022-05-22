@@ -49,7 +49,6 @@ class JugadorNewType extends AbstractType
                         'maxMessage' => 'El télefono no puede ser superior a {{ limit }} caracteres',
                     ])
                 ],
-                'required' => false,
             ])
             ->add('anoNacimiento',TextType::class, [
                 'label' => 'Introduzca su Año de Nacimiento',

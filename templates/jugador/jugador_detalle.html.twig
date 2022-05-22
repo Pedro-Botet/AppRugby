@@ -72,7 +72,7 @@
                             <small>Placajes Completados:</small><br/>
                             {{jugador.placajesDone}}
                         </p>
-                    <p class="card-text">
+                        <p class="card-text">
                             <small>Tarjeta(s) Amarilla(s):</small><br/>
                             {{jugador.tarjetaAmarilla}}
                         </p>
@@ -87,7 +87,7 @@
                             <small>Ensayo(s):</small><br/>
                             {{jugador.ensayo}} 
                         </p>
-                    <p class="card-text">
+                        <p class="card-text">
                             <small>Tarjeta(s) Rojas(s):</small><br/>
                             {{jugador.tarjetaRoja}}
                         </p>
@@ -143,8 +143,9 @@
                                 <small>Melee Ganadas:</small><br/>
                                 {{jugador.meleeDone}}
                             </p>
-                        </div>
+                        
                         {% endif %}
+                        </div>
                 </div>
             </div>
         </div>
@@ -200,10 +201,8 @@
                 </div>
             </div>
         </div>
-        
         <div class="bottom-buttons">
             <p class="form-error-text">
-                <a href="{{ path('editarJugador', {userId: app.user.id}) }}" class="btn btn-outline-secondary">EDITAR PERFIL</a>
                 <button class="btn btn-outline-info" onclick="window.history.back()">VOLVER ATRAS</button>
             </p>
         </div>
