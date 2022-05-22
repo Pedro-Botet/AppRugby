@@ -18,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class JugadorController extends AbstractController
 {
     /**
+     * Crear Nuevo Jugador
      * 
      * @Route("/jugador", name="new_jugador")
      */
@@ -76,6 +77,8 @@ class JugadorController extends AbstractController
     }
 
     /**
+     * Muestra la cuenta de un Jugador y permite editarla
+     * 
      * @Route("jugador/miCuenta/{userId}", name="miCuentaJugador")
      */
     public function detalleCuenta(JugadorRepository $jugadorRepository, $userId)
@@ -95,6 +98,8 @@ class JugadorController extends AbstractController
     }
 
     /**
+     * Permite editar la cuenta del Jugador
+     * 
      * @Route("jugador/editar/{userId}", name="editarJugador")
      */
     public function editarCuenta(Request $request, EntityManagerInterface $entityManager, JugadorRepository $jugadorRepository, UserRepository $userRepository,$userId)
@@ -152,6 +157,7 @@ class JugadorController extends AbstractController
     }
 
     /**
+     * Muestra todos los jugadores
      * 
      * @Route("jugador/listar", name="listar_jugadores")
      */
@@ -163,6 +169,7 @@ class JugadorController extends AbstractController
     }
 
     /**
+     * Muestra a otros usuarios el perfil de un Jugador
      * 
      * @Route("jugador/detalle/{jugadorId}", name="jugador_detalle")
      */
@@ -176,6 +183,4 @@ class JugadorController extends AbstractController
             'email' => $email
         ]);
     }
-
-
 }

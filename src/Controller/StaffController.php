@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Jornadas;
 use App\Entity\Staff;
-use App\Entity\User;
+
 use App\Form\StaffEditarType;
 use App\Form\StaffNewType;
 use App\Form\UploadJornadaType;
@@ -63,7 +63,7 @@ class StaffController extends AbstractController
     }
 
     /**
-     * Muestra la Cuenta de un Miembro del Staff
+     * Muestra la cuenta de un miembro del Staff y permite editarla
      * 
      * @Route("staff/miCuenta/{userId}", name="miCuentaStaff")
      */
