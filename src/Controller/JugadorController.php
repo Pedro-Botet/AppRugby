@@ -52,6 +52,7 @@ class JugadorController extends AbstractController
             
             if($form->get('esChutador')){
                 $jugador->setChutePalosTotal("0");
+                $jugador->setChutePalosDone("0");
             }
 
             if($jugador->getPosicion() < 9 || $jugador->getPosicion() == 'Segunda' || $jugador->getPosicion() == 'Flanker'){

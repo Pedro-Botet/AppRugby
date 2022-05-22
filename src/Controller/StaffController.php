@@ -4,24 +4,24 @@ namespace App\Controller;
 
 use App\Entity\Jornadas;
 use App\Entity\Staff;
-
+use App\Entity\User;
 use App\Form\StaffEditarType;
 use App\Form\StaffNewType;
 use App\Form\UploadJornadaType;
+
 use App\Repository\JugadorRepository;
 use App\Repository\StaffRepository;
 use App\Repository\UserRepository;
-use Doctrine\DBAL\Types\TextType;
+
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -30,6 +30,8 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class StaffController extends AbstractController
 {
     /**
+     * Crear Nuevo Miembro del Staff
+     *
      * @Route("/staff", name="new_staff")
      */
     public function newStaff(Request $request, EntityManagerInterface $entityManager, UserRepository $repository): Response
@@ -61,6 +63,8 @@ class StaffController extends AbstractController
     }
 
     /**
+     * Muestra la Cuenta de un Miembro del Staff
+     * 
      * @Route("staff/miCuenta/{userId}", name="miCuentaStaff")
      */
     public function detalleCuenta(StaffRepository $staffRepository, $userId)
@@ -80,6 +84,7 @@ class StaffController extends AbstractController
     }
 
     /**
+     * Lista a Todos los Miembros del Staff
      * 
      * @Route("staff/listar", name="listar_staff")
      */
@@ -91,6 +96,7 @@ class StaffController extends AbstractController
     }
 
     /**
+     * Muestra la Información de unn Miembro del Staff a Cualquier Usuario
      * 
      * @Route("staff/detalle/{staffId}", name="staff_detalle")
      */
@@ -106,6 +112,8 @@ class StaffController extends AbstractController
     }
 
     /**
+     * Permite al Staff Editar sus Propios Datos
+     * 
      * @Route("staff/editar/{userId}", name="editarStaff")
      */
     public function editarCuenta(Request $request, EntityManagerInterface $entityManager, StaffRepository $staffRepository,$userId)
@@ -145,6 +153,8 @@ class StaffController extends AbstractController
     }
 
     /**
+     * Sube los datos de cada jornada en CSV y los guarda
+     * 
      * @Route("staff/jornada_upload", name="uploadJornada")
      */
     public function uploadJornada(Request $request, JugadorRepository $jugadoresRepository, EntityManagerInterface $entityManager, SluggerInterface $slugger)
@@ -222,6 +232,9 @@ class StaffController extends AbstractController
     }
 
     
+    /**
+     * Función que recibe el nombre del archivo de la jornada y devuelve un array de los datos
+     */
     public function getCsvRowsAsArrays($newFilename)
     {
         $inputFile = $this->getParameter('uploads_dir') . $newFilename;
@@ -232,6 +245,10 @@ class StaffController extends AbstractController
         return $decoder->decode(file_get_contents($inputFile), 'csv');
     }
 
+
+    /***
+     * Función que comprueba que el jugador tiene datos que actualizar y en tal caso los actualiza
+     */
     public function updateJugador($jugadorExiste, $dato)
     {
         if ($dato['placajes_intentados'] != null) {
@@ -314,4 +331,5 @@ class StaffController extends AbstractController
 
         $this->entityManager->persist($jugadorExiste);
     }
+
 }
