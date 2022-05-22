@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Jornadas;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,7 +23,7 @@ class UploadJornadaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Jornadas::class,
+            // 'data_class' => Jornadas::class,
         ]);
     }
 }

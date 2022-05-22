@@ -161,8 +161,8 @@ class StaffController extends AbstractController
     {
 
         if($this->getUSer()->getUserType() == 'Staff'){
-            $jornada = new Jornadas();
-            $form = $this->createForm(UploadJornadaType::class, $jornada);
+
+            $form = $this->createForm(UploadJornadaType::class);
             
             $form->handleRequest($request);
 
