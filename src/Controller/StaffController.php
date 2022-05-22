@@ -170,7 +170,7 @@ class StaffController extends AbstractController
 
                 /** @var UploadedFile $file */
                 $file = $form->get('jornada')->getData();
-                
+            
                 if ($file) {
 
                     $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
@@ -186,12 +186,12 @@ class StaffController extends AbstractController
                         $newFilename
                     );
                     }catch (FileException $e) {
-                        $this->render('error.html.twig',[
+                        return $this->render('error.html.twig',[
                             'error' => 'Se ha producido un error, vuelva a subir el archivo'
                         ]);
                     }
                 }else{
-                    $this->render('error.html.twig',[
+                    return $this->render('error.html.twig',[
                         'error' => 'Se ha producido un error, vuelva a subir el archivo'
                     ]);
                 }
@@ -201,20 +201,26 @@ class StaffController extends AbstractController
                 
                 $actualizados = 0;
 
-                foreach ($datosPartido as $dato) {
+                try{
+                    foreach ($datosPartido as $dato) {
 
-                    if ($jugadorExiste = $jugadoresRepository->findOneBy(['nombre' => $dato['jugador']])){
-                        
-                        $this->updateJugador($jugadorExiste, $dato);
-                        
-                        $actualizados++;
+                        if ($jugadorExiste = $jugadoresRepository->findOneBy(['nombre' => $dato['jugador']])){
+                            
+                            $this->updateJugador($jugadorExiste, $dato);
+                            
+                            $actualizados++;
+                        }
+
                     }
-
+                }catch (\Exception $e){
+                    return $this->render('error.html.twig',[
+                        'error' => 'Se ha producido un error al leer el archivo, vuelva a subir el archivo en formato .csv'
+                    ]);
                 }
 
                 $entityManager->flush();
 
-                return $this->redirectToRoute('staff/jornada_exito.html.twig', [
+                return $this->render('staff/jornada_exito.html.twig', [
                     'actualizados' => $actualizados
                 ]);
             }
