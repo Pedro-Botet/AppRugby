@@ -71,7 +71,7 @@ class ImportarDatosCommand extends Command
 
     public function getCsvRowsAsArrays()
     {
-        $inputFile = $this->projectDir . '/public/DatosPartidos/18-05-2022.csv';
+        $inputFile = $this->projectDir . '/public/DatosPartidos/Jornada1.csv';
 
         $decoder = new Serializer([new ObjectNormalizer()], [new CsvEncoder()]);
 
